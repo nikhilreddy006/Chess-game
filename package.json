@@ -1,4 +1,9 @@
-"scripts": {
-  "start": "node app.js"
+{
+  "name": "chess-game",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {}
 }
 
