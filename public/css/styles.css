@@ -1,176 +1,157 @@
-/* Existing styles remain the same */
-.game-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-}
+/* Additional CSS styles for improved UI */
 
-.turn-indicator {
-    font-size: 24px;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 8px;
-    background-color: #2c1810;
-    color: #fff;
-    text-align: center;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-    width: 200px;
-}
-
-.turn-indicator.active {
-    opacity: 1;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    transform: scale(1.05);
-}
-
-.turn-indicator.top {
-    margin-bottom: -10px;
-}
-
-.turn-indicator.bottom {
-    margin-top: -10px;
-}
-
-/* Chess board and piece styles */
 .chessboard {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(8, 1fr);
-    width: 500px;
-    height: 500px;
-    border: 2px solid #4a4a4a;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    background-color: #f0d9b5;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.square {
-    position: relative;
-    width: 62.5px;
-    height: 62.5px;
+    grid-template-columns: repeat(8, 50px);
+    grid-template-rows: repeat(8, 50px);
+    gap: 0;
+    border: 5px solid #654321;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  .square {
     display: flex;
-    align-items: center;
     justify-content: center;
-    transition: background-color 0.2s;
-}
-
-.square.white {
-    background-color: #f0d9b5;
-}
-
-.square.black {
-    background-color: #b58863;
-}
-
-.piece {
-    font-size: 40px;
-    cursor: grab;
-    user-select: none;
-    transition: transform 0.2s, opacity 0.2s;
-}
-
-.white-piece {
-    color: #ffffff;
-    text-shadow: 
-        -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000,
-        1px 1px 0 #000;
-}
-
-.black-piece {
-    color: #000000;
-    text-shadow: 
-        -1px -1px 0 #fff,
-        1px -1px 0 #fff,
-        -1px 1px 0 #fff,
-        1px 1px 0 #fff;
-}
-
-.piece.dragging {
-    opacity: 0.6;
-    transform: scale(1.2);
-    cursor: grabbing;
-}
-
-@keyframes movePiece {
-    from { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    to { transform: scale(1); }
-}
-
-.piece.moving {
-    animation: movePiece 0.3s ease-in-out;
-}
-
-.valid-move {
+    align-items: center;
+    width: 50px;
+    height: 50px;
     position: relative;
-}
-
-.valid-move::after {
+  }
+  
+  .square.white {
+    background-color: #f0d9b5;
+  }
+  
+  .square.black {
+    background-color: #b58863;
+  }
+  
+  .piece {
+    font-size: 40px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+    transition: transform 0.1s;
+  }
+  
+  .piece.dragging {
+    opacity: 0.6;
+  }
+  
+  .white-piece {
+    color: #fff;
+    text-shadow: 0 0 2px #000;
+  }
+  
+  .black-piece {
+    color: #000;
+    text-shadow: 0 0 2px #555;
+  }
+  
+  .valid-move::after {
     content: '';
     position: absolute;
     width: 20px;
     height: 20px;
     background-color: rgba(0, 255, 0, 0.3);
     border-radius: 50%;
-    pointer-events: none;
-}
-
-/* New game end styles */
-.game-status {
+    z-index: 5;
+  }
+  
+  .selected {
+    background-color: rgba(173, 216, 230, 0.7) !important;
+  }
+  
+  .game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .turn-indicator {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    color: #333;
+    transition: all 0.3s ease;
+  }
+  
+  .turn-indicator.active {
+    background-color: #4CAF50;
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  .status-message {
+    font-size: 16px;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    color: #333;
+    min-height: 20px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .game-status {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #2c1810;
-    color: #fff;
-    padding: 20px 40px;
-    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
     font-size: 24px;
-    font-weight: bold;
-    z-index: 1000;
-    display: none;
+    z-index: 100;
     text-align: center;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    animation: fadeIn 0.3s ease-out;
-    border: 2px solid #b58863;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -60%);
+    transition: opacity 0.5s;
+  }
+  
+  .game-status.checkmate {
+    background-color: rgba(220, 20, 60, 0.9);
+  }
+  
+  .game-status.draw {
+    background-color: rgba(70, 130, 180, 0.9);
+  }
+  
+  .reset-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .reset-button:hover {
+    background-color: #45a049;
+  }
+  
+  @media (max-width: 500px) {
+    .chessboard {
+      grid-template-columns: repeat(8, 40px);
+      grid-template-rows: repeat(8, 40px);
     }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
+    
+    .square {
+      width: 40px;
+      height: 40px;
     }
-}
-
-/* Add styles for winner highlights */
-.game-status.checkmate {
-    background-color: #2c1810;
-    border-color: #ffd700;
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
-}
-
-.game-status.draw {
-    background-color: #2c1810;
-    border-color: #808080;
-}
-
-.game-status.check {
-    background-color: #8b0000;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); }
-    50% { box-shadow: 0 0 25px rgba(255, 0, 0, 0.5); }
-    100% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); }
-}
+    
+    .piece {
+      font-size: 32px;
+    }
+  }
+  
