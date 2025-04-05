@@ -42,9 +42,10 @@ Take turns moving pieces according to chess rules.
 The game ends when a player is checkmated or a draw is declared.
 
 # 📸 Screenshots
-![image](https://github.com/user-attachments/assets/ee2d5414-1d02-4464-9809-459b5fdac583)
+![image](https://github.com/user-attachments/assets/ec9922b3-d7af-43ce-9f96-8a2f14764b9d)
 
-![image](https://github.com/user-attachments/assets/6f68e3b9-862c-4c4d-afa1-eb6cff40a0d7)
+![image](https://github.com/user-attachments/assets/a5fd0ce4-82d7-42e3-8e4e-a6533bffbe1e)
+
 
 
 # 🔮 Future Scope
