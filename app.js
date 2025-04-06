@@ -1,4 +1,3 @@
-// Fixed version of app.js
 
 const express = require('express');
 const socket = require('socket.io');

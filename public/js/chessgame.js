@@ -1,4 +1,3 @@
-// Fixed version of chessgame.js
 
 const socket = io();
 const chess = new Chess();
